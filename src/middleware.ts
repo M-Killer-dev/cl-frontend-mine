@@ -7,9 +7,9 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   console.log("session...", session);
 
   //Return to /login if don't have a session
-  if (!session) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // if (!session) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
   //Call the authentication endpoint
   const responseAPI = await fetch(`${request.nextUrl.origin}/api/login`, {
@@ -19,9 +19,9 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   });
 
   //Return to /login if token is not authorized
-  if (responseAPI.status !== 200) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // if (responseAPI.status !== 200) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
   return NextResponse.next();
 }
