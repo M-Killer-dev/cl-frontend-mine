@@ -49,10 +49,13 @@ const ConnectCCP = (
         throw new Error("global connect missing");
       log("init start");
       if (document.getElementById("ccp-div") && document.getElementById("ccp-div").innerHTML === '') {
+        const ccpUrl = "https://tbi-test-connect.my.connect.aws/connect/ccp-v2";
+        // const ccpUrl = "https://tbi-test-connect.my.connect.aws/connect/ccp-v2";
+
         window.connect.core.initCCP(
           document.getElementById("ccp-div"),
           {
-            ccpUrl: `https://tbi-test-connect.my.connect.aws/connect/ccp-v2`,
+            ccpUrl: ccpUrl,
             region: "us-east-1",
             loginPopup: true,				// optional, defaults to `true`
             loginPopupAutoClose: true,		// optional, defaults to `true`
