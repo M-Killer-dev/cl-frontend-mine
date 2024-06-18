@@ -88,6 +88,19 @@ const ConnectCCP = (
       }
     );
 
+    const sub = window.connect.contact((c) => {
+      log("contacted");
+      try {
+        if (isCancelled === false) {
+          callback(c);
+        } else {
+          log("was canceled, not calling callback");
+        }
+      } catch (e) {
+        logger.error("connect error", e);
+      }
+    });
+
     // Subscribe to Contact events
     connect.contact(subscribeToContactEvents);
     // Subscribe to Agent events
