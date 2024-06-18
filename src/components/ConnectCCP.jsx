@@ -54,8 +54,8 @@ const ConnectCCP = (
           {
             ccpUrl: `https://tbi-test-connect.my.connect.aws/connect/ccp-v2`,
             region: "us-east-1",
-            loginPopup: true,				// optional, defaults to `true`
-            loginPopupAutoClose: true,		// optional, defaults to `false`
+            loginPopup: false,				// optional, defaults to `true`
+            loginPopupAutoClose: false,		// optional, defaults to `false`
             loginOptions: {                 // optional, if provided opens login in new window
               autoClose: true,              // optional, defaults to `false`
               height: 600,                  // optional, defaults to 578
@@ -66,7 +66,7 @@ const ConnectCCP = (
             softphone: {                    // optional, defaults below apply if not provided
               allowFramedSoftphone: true,   // optional, defaults to false
               disableRingtone: false,       // optional, defaults to false
-              ringtoneUrl: "./ringtone.mp3" // optional, defaults to CCP’s default ringtone if a falsy value is set
+              // ringtoneUrl: "./ringtone.mp3" // optional, defaults to CCP’s default ringtone if a falsy value is set
             },
             pageOptions: {                  // optional
               enableAudioDeviceSettings: true, // optional, defaults to 'false'
