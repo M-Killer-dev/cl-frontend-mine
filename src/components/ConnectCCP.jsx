@@ -52,7 +52,7 @@ const ConnectCCP = (
         window.connect.core.initCCP(
           document.getElementById("ccp-div"), 
           {
-          ccpUrl: `https://tbi-test-connect.my.connect.aws/ccp-v2`,
+          ccpUrl: `https://tbi-test-connect.my.connect.aws/connect/ccp-v2`,
           loginPopup: true,
           region: "us-east-1",
         });
