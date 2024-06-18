@@ -162,6 +162,7 @@ const CallerDashboard = ({ records }: Props) => {
             </div>
 
             <div className="xl:w-2/12">
+              <ConnectCCP phoneNum={records[currentIndex]?.phone} />
               <div className="flex justify-between mb-5">
                 <div className="flex items-center gap-2">
                   <button
@@ -338,7 +339,6 @@ const CallerDashboard = ({ records }: Props) => {
 
       <section>
         <div className=" p-20">
-        <ConnectCCP phoneNum={records[currentIndex]?.phone}/>
           <div className="max-w-screen-lg mx-auto">
             <p className="text-4xl text-center mb-20">Notepad</p>
             <div className="flex flex-wrap items-stretch justify-between">

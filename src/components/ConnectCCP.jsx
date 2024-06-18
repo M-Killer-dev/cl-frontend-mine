@@ -11,7 +11,7 @@ import axios from "axios";
 
 const name = "ConnectCCP";
 const { log, error } = genLogger(name);
-const phoneNum=""
+const phoneNum = ""
 const ConnectCCP = (
   { phoneNum }
 ) => {
@@ -50,32 +50,51 @@ const ConnectCCP = (
       log("init start");
       if (document.getElementById("ccp-div") && document.getElementById("ccp-div").innerHTML === '') {
         window.connect.core.initCCP(
-          document.getElementById("ccp-div"), 
+          document.getElementById("ccp-div"),
           {
-          ccpUrl: `https://tbi-test-connect.my.connect.aws/connect/ccp-v2`,
-          loginPopup: true,
-          region: "us-east-1",
-        });
+            ccpUrl: `https://tbi-test-connect.my.connect.aws/connect/ccp-v2`,
+            region: "us-east-1",
+            loginPopup: true,				// optional, defaults to `true`
+            loginPopupAutoClose: true,		// optional, defaults to `false`
+            loginOptions: {                 // optional, if provided opens login in new window
+              autoClose: true,              // optional, defaults to `false`
+              height: 600,                  // optional, defaults to 578
+              width: 400,                   // optional, defaults to 433
+              top: 0,                       // optional, defaults to 0
+              left: 0                       // optional, defaults to 0
+            },
+            softphone: {                    // optional, defaults below apply if not provided
+              allowFramedSoftphone: true,   // optional, defaults to false
+              disableRingtone: false,       // optional, defaults to false
+              ringtoneUrl: "./ringtone.mp3" // optional, defaults to CCP’s default ringtone if a falsy value is set
+            },
+            pageOptions: {                  // optional
+              enableAudioDeviceSettings: true, // optional, defaults to 'false'
+              enablePhoneTypeSettings: true // optional, defaults to 'true'
+            },
+            ccpAckTimeout: 5000, //optional, defaults to 3000 (ms)
+            ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
+            ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
+          });
+        connect.getLog().warn("CDEBUG >> CCP initialized");
         log("init end");
-
-        connect.core.onViewContact(
-          function (event) {
-            console.debug("CDEBUG >> onViewContact() - Now Vieving contact ID: '" + event.contactId + "'");
-          }
-        );
-
-        // Subscribe to Contact events
-        connect.contact(subscribeToContactEvents);
-        // Subscribe to Agent events
-        connect.agent(subscribeToAgentEvents);
-
-        // Send information to the Connect Logger
-        connect.getLog().info("CDEBUG >> CCP initialized and subscribed to events");
       }
     } catch (e) {
       error(e);
     }
+    connect.core.onViewContact(
+      function (event) {
+        console.debug("CDEBUG >> onViewContact() - Now Vieving contact ID: '" + event.contactId + "'");
+      }
+    );
 
+    // Subscribe to Contact events
+    connect.contact(subscribeToContactEvents);
+    // Subscribe to Agent events
+    connect.agent(subscribeToAgentEvents);
+
+    // Send information to the Connect Logger
+    connect.getLog().info("CDEBUG >> CCP initialized and subscribed to events");
   }, []);
 
   log("render");
