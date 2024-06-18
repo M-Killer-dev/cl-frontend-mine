@@ -75,6 +75,8 @@ const ConnectCCP = (
             ccpAckTimeout: 5000, //optional, defaults to 3000 (ms)
             ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
             ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
+          }).then((agent) => {
+            console.log("hhhhhhhhhhhhhh",agent);
           });
         connect.getLog().warn("CDEBUG >> CCP initialized");
         log("init end");
