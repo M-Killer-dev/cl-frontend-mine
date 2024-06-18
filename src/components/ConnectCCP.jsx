@@ -54,8 +54,8 @@ const ConnectCCP = (
           {
             ccpUrl: `https://tbi-test-connect.my.connect.aws/connect/ccp-v2`,
             region: "us-east-1",
-            loginPopup: false,				// optional, defaults to `true`
-            loginPopupAutoClose: false,		// optional, defaults to `false`
+            loginPopup: true,				// optional, defaults to `true`
+            loginPopupAutoClose: true,		// optional, defaults to `true`
             loginOptions: {                 // optional, if provided opens login in new window
               autoClose: true,              // optional, defaults to `false`
               height: 600,                  // optional, defaults to 578
