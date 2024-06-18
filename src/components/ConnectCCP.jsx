@@ -75,41 +75,26 @@ const ConnectCCP = (
             ccpAckTimeout: 5000, //optional, defaults to 3000 (ms)
             ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
             ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
-          }).then((agent) => {
-            console.log("hhhhhhhhhhhhhh",agent);
           });
-        connect.getLog().warn("CDEBUG >> CCP initialized");
+          window.connect.getLog().warn("CDEBUG >> CCP initialized");
         log("init end");
       }
     } catch (e) {
       error(e);
     }
-    connect.core.onViewContact(
+    window.connect.core.onViewContact(
       function (event) {
         console.debug("CDEBUG >> onViewContact() - Now Vieving contact ID: '" + event.contactId + "'");
       }
     );
 
-    const sub = window.connect.contact((c) => {
-      log("contacted");
-      try {
-        if (isCancelled === false) {
-          callback(c);
-        } else {
-          log("was canceled, not calling callback");
-        }
-      } catch (e) {
-        logger.error("connect error", e);
-      }
-    });
-
     // Subscribe to Contact events
-    connect.contact(subscribeToContactEvents);
+    window.connect.contact(subscribeToContactEvents);
     // Subscribe to Agent events
-    connect.agent(subscribeToAgentEvents);
+    window.connect.agent(subscribeToAgentEvents);
 
     // Send information to the Connect Logger
-    connect.getLog().info("CDEBUG >> CCP initialized and subscribed to events");
+    window.connect.getLog().info("CDEBUG >> CCP initialized and subscribed to events");
   }, []);
 
   log("render");
